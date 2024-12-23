@@ -13,19 +13,3 @@ body {
     position: relative;
     padding: 20px;
 }
-
-.home-button {
-    position: absolute;
-    top: 2%;
-    left: 2%;
-    background-color: #5d2b37;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.back-button:hover {
-    background-color: #732e49;
-}
