@@ -6,15 +6,6 @@ body {
     color: #3e3e3e;
 }
 
-.vendor-product-info-container {
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: 30px auto;
-}
-
 .product-sales-table,
 .vendor-info {
     flex: 1;
@@ -86,21 +77,6 @@ table tr:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.home-button {
-    position: absolute;
-    top: 5%;
-    left: 3%;
-    background-color: #5d2b37;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.home-button:hover {
-    background-color: #732e49;
-}
 
 .loading-gif {
     width: 50px;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../../axiosConfig';
+import { handleSearch as fetchSearchResults } from '../../services/userService';
 import './searchVendor.css';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -39,28 +39,22 @@ const SearchVendor = () => {
 
   useEffect(() => {
     if (searchTerm.trim() !== '') {
-      handleSearch();
+      performSearch();
     } else {
       setResults([]);
     }
   }, [searchTerm]);
 
-const handleClick = (vendorId, vendorName) => {
-  navigate(`/vendor`, { state: { id: vendorId, name: vendorName } });
-};
+  const handleClick = (vendorId, vendorName) => {
+    navigate(`/vendor`, { state: { id: vendorId, name: vendorName } });
+  };
 
-  const handleSearch = async () => {
+  const performSearch = async () => {
     try {
       setError(null);
       setLoading(true);
-    const response = await axios.post('http://localhost:5000/api/vendors/search', {
-  name: searchTerm,
-}, {
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-      setResults(response.data);
+      const data = await fetchSearchResults(searchTerm);
+      setResults(data);
     } catch (err) {
       setError('Error fetching search results. Please try again later.');
       console.error(err);
@@ -68,7 +62,6 @@ const handleClick = (vendorId, vendorName) => {
       setLoading(false);
     }
   };
-
 
   return (
     <div className="search-vendor-container">

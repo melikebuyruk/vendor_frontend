@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { fetchVendorData } from '../../services/userService';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import axios from '../../axiosConfig';
 import './vendorInfo.css';
 import loadingGif from '../../static/gifs/loading.gif';
 
@@ -10,31 +10,36 @@ const VendorInfo = ({ id }) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchVendorData = async () => {
+    const getVendorData = async () => {
       try {
         setError(null);
-          setLoading(true);
-         const response = await axios.post('http://localhost:5000/api/vendors/sales', {
-         vendorId: id,
-        })
-        setVendorData(response.data);
+        setLoading(true);
+        const data = await fetchVendorData(id);
+        setVendorData(data);
       } catch (err) {
-        setError(err.response?.data?.error || 'Error fetching vendor information.');
-        console.error('API Error:', err);
+        setError(err.message);
+        console.error('Error fetching vendor data:', err);
       } finally {
         setLoading(false);
       }
     };
 
     if (id) {
-      fetchVendorData();
+      getVendorData();
     }
   }, [id]);
 
-  if (loading) return (<div className="loading-container">
-      <img src={loadingGif} alt="Loading..." className="loading-gif" />
-    </div>);
-  if (error) return <p style={{ color: 'black' }}>{error}</p>;
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <img src={loadingGif} alt="Loading..." className="loading-gif" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p style={{ color: 'black' }}>{error}</p>;
+  }
 
   return (
     <div className="vendor-info-container">

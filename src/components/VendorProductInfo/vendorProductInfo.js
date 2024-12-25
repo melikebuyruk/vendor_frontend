@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../../axiosConfig';
+import { fetchProductSales } from '../../services/userService';
 import './vendorProductInfo.css';
-import VendorInfo from '../VendorInfo/vendorInfo';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import loadingGif from '../../static/gifs/loading.gif';
 
-const VendorProductInfo = () => {
-  const location = useLocation();
-  const vendorId = location.state?.id;
-  const vendorName = location.state?.name;
-
+const VendorProductInfo = ({ vendorId, vendorName }) => {
   const [salesData, setSalesData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -20,16 +15,14 @@ const VendorProductInfo = () => {
   };
 
   useEffect(() => {
-    const fetchProductSales = async () => {
+    const getProductSales = async () => {
       try {
         setError(null);
         setLoading(true);
-        const response = await axios.post('http://localhost:5000/api/vendors/product-sales', {
-          vendorId: vendorId,
-        });
-        setSalesData(response.data);
+        const data = await fetchProductSales(vendorId);
+        setSalesData(data);
       } catch (err) {
-        setError(err.response?.data?.error || 'Error fetching product sales. Please try again later.');
+        setError(err.message || 'Error fetching product sales. Please try again later.');
         console.error('API Error:', err);
       } finally {
         setLoading(false);
@@ -37,7 +30,7 @@ const VendorProductInfo = () => {
     };
 
     if (vendorId) {
-      fetchProductSales();
+      getProductSales();
     }
   }, [vendorId]);
 
@@ -46,10 +39,10 @@ const VendorProductInfo = () => {
       <button className="home-button" onClick={handleHome}>Home</button>
       <div className="product-sales-table">
         <h1>{vendorName} Product Sales</h1>
-        {loading && ( <div className="loading-container">
-      <img src={loadingGif} alt="Loading..." className="loading-gif" />
-    </div>
-          
+        {loading && (
+          <div className="loading-container">
+            <img src={loadingGif} alt="Loading..." className="loading-gif" />
+          </div>
         )}
         {error && <p style={{ color: 'black' }}>{error}</p>}
         {!loading && !error && (
@@ -76,9 +69,6 @@ const VendorProductInfo = () => {
             <p>No sales data available for this vendor.</p>
           )
         )}
-      </div>
-      <div className="vendor-info">
-        <VendorInfo id={vendorId} name={vendorName} />
       </div>
     </div>
   );

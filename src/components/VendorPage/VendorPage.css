@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    color: #3e3e3e;
+}
+
+.vendor-product-info-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+
+.error {
+    color: #56283A;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+.vendor-info {
+    background-color: #ffffff;
+    border: 1px solid #F8F2ED;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.home-button {
+    position: absolute;
+    top: 5%;
+    left: 3%;
+    background-color: #5d2b37;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.home-button:hover {
+    background-color: #732e49;
+}
+
