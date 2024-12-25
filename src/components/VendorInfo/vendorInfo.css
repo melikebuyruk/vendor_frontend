@@ -13,3 +13,14 @@ body {
     position: relative;
     padding: 20px;
 }
+.loading-gif {
+    width: 50px;
+    height: auto;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+}

@@ -101,3 +101,15 @@ table tr:hover {
 .home-button:hover {
     background-color: #732e49;
 }
+
+.loading-gif {
+    width: 50px;
+    height: auto;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import axios from '../../axiosConfig';
 import './vendorInfo.css';
+import loadingGif from '../../static/gifs/loading.gif';
 
 const VendorInfo = ({ id }) => {
   const [vendorData, setVendorData] = useState([]);
@@ -30,7 +31,9 @@ const VendorInfo = ({ id }) => {
     }
   }, [id]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return (<div className="loading-container">
+      <img src={loadingGif} alt="Loading..." className="loading-gif" />
+    </div>);
   if (error) return <p style={{ color: 'black' }}>{error}</p>;
 
   return (

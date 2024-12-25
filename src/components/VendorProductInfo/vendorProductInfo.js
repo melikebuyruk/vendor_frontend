@@ -3,6 +3,7 @@ import axios from '../../axiosConfig';
 import './vendorProductInfo.css';
 import VendorInfo from '../VendorInfo/vendorInfo';
 import { useNavigate, useLocation } from 'react-router-dom';
+import loadingGif from '../../static/gifs/loading.gif';
 
 const VendorProductInfo = () => {
   const location = useLocation();
@@ -45,7 +46,11 @@ const VendorProductInfo = () => {
       <button className="home-button" onClick={handleHome}>Home</button>
       <div className="product-sales-table">
         <h1>{vendorName} Product Sales</h1>
-        {loading && <p>Loading...</p>}
+        {loading && ( <div className="loading-container">
+      <img src={loadingGif} alt="Loading..." className="loading-gif" />
+    </div>
+          
+        )}
         {error && <p style={{ color: 'black' }}>{error}</p>}
         {!loading && !error && (
           salesData.length > 0 ? (
