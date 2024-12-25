@@ -59,19 +59,19 @@ The **Vendor Frontend** is a React-based application designed to provide an intu
 src/
 ├── components/
 │   ├── SearchVendor/
-│   │   └── SearchVendor.js   # Real-time vendor search interface
+│   │   └── SearchVendor.js   # Real-time vendor search
 │   ├── VendorPage/
 │   │   └── VendorPage.js     # Displays selected vendor's information
 │   ├── VendorInfo/
-│   │   └── VendorInfo.js     # Bar chart showing monthly sales
+│   │   └── VendorInfo.js     # Monthly sales bar chart
 │   └── VendorProductInfo/
 │       └── VendorProductInfo.js # Table showing total products sold and earnings
 ├── services/
-│   └── userService.js        # Centralized API calls using Axios
-├── App.js                    # Main app component
-├── index.js                  # React app entry point
+│   └── userService.js        # API calls using Axios
+├── App.js                 
+├── index.js                 
 └── static/
-    └── gifs/                 # Loading GIFs and static assets
+    └── gifs/             
 ```
 
 
