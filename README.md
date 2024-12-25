@@ -1,70 +1,94 @@
-# Getting Started with Create React App
+# Vendor Frontend Documentation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+The **Vendor Frontend** is a React-based application designed to provide an intuitive interface for searching and viewing vendor information. This project forms the frontend of a larger system, with the backend handled by a separate project called **Vendor Dashboard**. The application allows users to search for vendors in real-time, view their sales data, and explore detailed analytics about their performance.
 
-In the project directory, you can run:
+### Features
 
-### `npm start`
+1. **Homepage (SearchVendor):**
+   - A real-time search interface for finding vendors.
+   - Located in `components/SearchVendor/SearchVendor.js`.
+   - Users can type a vendor's name to search dynamically.
+   - Clicking on a vendor redirects to the `/vendor` page using React Router.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. **Vendor Page (/vendor):**
+   - Displays detailed information about a selected vendor.
+   - Implemented in `components/VendorPage/VendorPage.js`.
+   - Combines two sub-components:
+     - **VendorProductInfo**: A table showing the total number of products sold by the vendor, along with total earnings.
+     - **VendorInfo**: A bar chart displaying the vendor's monthly sales performance.
+   - Both components fetch data from APIs using Axios.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. **API Integration:**
+   - All API calls are handled in `services/userService.js` for modular and reusable code.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Project Setup and Installation
 
-### `npm run build`
+### Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Node.js** and **npm** installed on your system.
+- A running instance of the **Vendor Dashboard** backend project.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation Steps
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Clone the Repository:**
+   ```bash
+   git clone <repository-url>
+   cd vendor_frontend
+   ```
 
-### `npm run eject`
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Start the Application:**
+   ```bash
+   npm start
+   ```
+   - The application will be available at `http://localhost:3000` by default.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Project Structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```plaintext
+src/
+├── components/
+│   ├── SearchVendor/
+│   │   └── SearchVendor.js   # Real-time vendor search interface
+│   ├── VendorPage/
+│   │   └── VendorPage.js     # Displays selected vendor's information
+│   ├── VendorInfo/
+│   │   └── VendorInfo.js     # Bar chart showing monthly sales
+│   └── VendorProductInfo/
+│       └── VendorProductInfo.js # Table showing total products sold and earnings
+├── services/
+│   └── userService.js        # Centralized API calls using Axios
+├── App.js                    # Main app component
+├── index.js                  # React app entry point
+└── static/
+    └── gifs/                 # Loading GIFs and static assets
+```
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Usage Guide
 
-### Code Splitting
+1. Open the homepage (`/`) to search for vendors in real-time.
+2. Select a vendor to navigate to the `/vendor` page.
+3. View detailed information:
+   - Table of total products sold and earnings.
+   - Bar chart of monthly sales performance.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## Future Improvements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Relocate the Search page and VendorPage into a view or route directory. It was my plan but I could not find the needed time.
+- CSSa and UI improvments.
+- A clean skeleton.
+---
