@@ -18,9 +18,5 @@ const App = () => {
   );
 };
 
-const VendorProductInfoWrapper = () => {
-  const { vendorid } = useParams();
-  return <VendorProductInfo id={vendorid} />;
-}; 
 
 export default App;
